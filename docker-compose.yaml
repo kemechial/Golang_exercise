@@ -1,0 +1,12 @@
+services:
+  golang_dev:
+    container_name: go_dev_env # Optional: Give the container a specific name
+    build: ./Dockerfiles # Build the image from the Dockerfile in the current directory
+    volumes:
+      # Mount the current directory (.) on the host
+      # to the /app directory in the container
+      - ./files:/app
+    # Keep stdin open and allocate a pseudo-TTY
+    # This is necessary for interactive shells like bash
+    stdin_open: true
+    tty: true

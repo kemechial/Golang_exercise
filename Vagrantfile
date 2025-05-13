@@ -6,18 +6,18 @@ Vagrant.configure("2") do |config|
     gohost.vm.box = "ubuntu/jammy64"
 
     # Set up a synchronized folder (host to guest)
-    gohost.vm.synced_folder "C:\\GoExercise\\files", "/tmp/files"
-        
-    # Provisioning to install Go
+    gohost.vm.synced_folder "C:\\GoExercise", "/tmp"
+   
+    # Provisioning to install Go and SQLite
     gohost.vm.provision "shell", inline: <<-SHELL
       # Update package list
       sudo apt-get update
 
       # Install prerequisites
-      sudo apt-get install -y wget tar
+      sudo apt-get install -y wget tar sqlite3 libsqlite3-dev
 
       # Download and install Go
-      GO_VERSION=1.20.5
+      GO_VERSION=1.24.3
       wget https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
       sudo tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz
       rm go${GO_VERSION}.linux-amd64.tar.gz

@@ -1,0 +1,11 @@
+POST http://192.168.56.10:8080/events
+Content-type: application/json
+
+{
+  "name": "Test Event",
+  "description": "This is a test event",
+  "location": "latitude: 37.7749, longitude: -122.4194",
+  "date_time": "2023-10-01T10:00:00Z"
+}
+
+

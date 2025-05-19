@@ -1,6 +1,6 @@
 POST http://192.168.56.10:8080/events
 Content-type: application/json
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZXhhbXBsZTIxLmNvbSIsImV4cCI6MTc0NzY3NjI2NCwidXNlcklkIjoyfQ.ftH7TwBm5X5e83VCF47eTWYw42HoAPSb3zKEovOMqvY
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJleHAiOjE3NDc2ODQzMjEsInVzZXJJZCI6MX0.3W_VGpLFnT3k7FEvcZ_h68bp8rld4cbJ_cwcZk6T0Uc
 
 {
   "name": "Test Event",

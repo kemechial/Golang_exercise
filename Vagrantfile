@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
     gohost.vm.box = "ubuntu/jammy64"
 
     # Set up a synchronized folder (host to guest)
-    gohost.vm.synced_folder "C:\\GoExercise", "/tmp"
+    gohost.vm.synced_folder "C:\\Golang_exercise", "/tmp"
    
     # Provisioning to install Go and SQLite
     gohost.vm.provision "shell", inline: <<-SHELL

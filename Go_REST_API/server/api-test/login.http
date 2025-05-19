@@ -1,9 +1,7 @@
-POST http://192.168.56.10:8080/signup
+POST http://192.168.56.10:8080/login
 Content-type: application/json
 
 {
-  "username": "testuser",
   "password": "testpassword",
   "email": "test@example2.com"
 }
-

@@ -2,6 +2,8 @@ package models
 
 import (
     "example.com/testserver/db"
+	"example.com/testserver/utils"
+	"errors"
 )
 
 type User struct {
@@ -17,7 +19,11 @@ func (u *User) Save()  error {
 		return err
 	}
 	defer stmt.Close()
-	result, err := stmt.Exec(u.Password, u.Email)
+	hashedPassword, err := utils.HashPassword(u.Password)
+	if err != nil {
+		return err
+	}
+	result, err := stmt.Exec(hashedPassword, u.Email)
 	if err != nil {
 		return err
 	}
@@ -27,6 +33,42 @@ func (u *User) Save()  error {
 		return err
 	}
 	u.ID = userID
+	u.Password = hashedPassword
 	return nil
 }
+
+func (u *User) FindByEmail() error {
+	query := "SELECT id, password FROM users WHERE email = ?"
+	stmt, err := db.DB.Prepare(query)
+	if err != nil {
+		return err
+	}
+	defer stmt.Close()
+	row := stmt.QueryRow(u.Email)
+	err = row.Scan(&u.ID, &u.Password)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *User) ValidateCredentials() error {
+	query := "SELECT password FROM users WHERE email = ?"	
+	row := db.DB.QueryRow(query, u.Email)
+
+	var storedPassword string
+	err := row.Scan(&storedPassword)
+
+	if err != nil {
+		return err
+	}	
+
+	passwordIsValid := utils.CheckPasswordHash(u.Password, storedPassword)
+	if !passwordIsValid {
+		return errors.New("Credentials are not valid")
+	}
+	
+	return nil
+}
+
 

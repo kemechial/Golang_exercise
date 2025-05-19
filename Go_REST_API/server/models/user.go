@@ -37,27 +37,14 @@ func (u *User) Save()  error {
 	return nil
 }
 
-func (u *User) FindByEmail() error {
-	query := "SELECT id, password FROM users WHERE email = ?"
-	stmt, err := db.DB.Prepare(query)
-	if err != nil {
-		return err
-	}
-	defer stmt.Close()
-	row := stmt.QueryRow(u.Email)
-	err = row.Scan(&u.ID, &u.Password)
-	if err != nil {
-		return err
-	}
-	return nil
-}
+
 
 func (u *User) ValidateCredentials() error {
-	query := "SELECT password FROM users WHERE email = ?"	
+	query := "SELECT id, password FROM users WHERE email = ?"	
 	row := db.DB.QueryRow(query, u.Email)
 
 	var storedPassword string
-	err := row.Scan(&storedPassword)
+	err := row.Scan(&u.ID, &storedPassword)
 
 	if err != nil {
 		return err

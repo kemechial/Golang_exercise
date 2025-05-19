@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"example.com/testserver/models"
 	"net/http"
+	"example.com/testserver/utils"
 )
 
 func signup(context *gin.Context)	{
@@ -32,8 +33,16 @@ func login(context *gin.Context) {
 		return
 	}
 
-	context.JSON(http.StatusOK, gin.H{"message": "Login successful"})
-	
+	token, err := utils.GenerateToken(user.Email, user.ID)
+	if err != nil {	
+		context.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to generate token", "err": err.Error()})
+		return
+	}
+
+
+	context.JSON(http.StatusOK, gin.H{"message": "Login successful", "token": token})
 }
+	
+
 
 

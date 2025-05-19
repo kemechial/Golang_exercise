@@ -1,0 +1,12 @@
+POST http://192.168.56.10:8080/events
+Content-type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZXhhbXBsZTIxLmNvbSIsImV4cCI6MTc0NzY3NjI2NCwidXNlcklkIjoyfQ.ftH7TwBm5X5e83VCF47eTWYw42HoAPSb3zKEovOMqvY
+
+{
+  "name": "Test Event",
+  "description": "This is a test event",
+  "location": "latitude: 37.7749, longitude: -122.4194",
+  "date_time": "2023-10-01T10:00:00Z"
+}
+
+

@@ -2,8 +2,8 @@ POST http://192.168.56.10:8080/signup
 Content-type: application/json
 
 {
-  "username": "testuser",
+  "username": "testuser3",
   "password": "testpassword",
-  "email": "test@example2.com"
+  "email": "test@example21.com"
 }
 

@@ -3,6 +3,7 @@ import (
 	"strings"
 	"os"
 	"math/rand"
+	"time"
 )
 
 type deck []string
@@ -63,10 +64,15 @@ func newDeckFromFile(filename string) (deck, error) {
 	cards := strings.Split(s, ", ")
 	return deck(cards), nil
 }
-
+// This function shuffles the deck in place, it is a receiver function which takes a copy of the object, 
+// however deck is a slice, so it is passed by reference, thus it can modify the original deck.
 func (d deck) shuffle() {
+
+	source := rand.NewSource(time.Now().UnixNano())
+	r := rand.New(source)
+
 	for i := range d {
-		newPosition := rand.Intn(len(d))
+		newPosition := r.Intn(len(d))
 		d[i], d[newPosition] = d[newPosition], d[i]
 	}
 }

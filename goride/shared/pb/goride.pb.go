@@ -1,0 +1,1 @@
+// goride.pb.go

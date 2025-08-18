@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/order-management/internal/models"
+	"order_management_grpc/internal/models"
 )
 
 var (

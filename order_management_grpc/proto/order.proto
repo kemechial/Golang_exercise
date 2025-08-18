@@ -1,8 +1,9 @@
+
 syntax = "proto3";
 
-package order;
+package order.v1;
 
-option go_package = "./orderpb";
+option go_package = "github.com/order-management-grpc/proto/orderpb;orderpb";
 
 import "google/protobuf/timestamp.proto";
 

@@ -88,7 +88,7 @@ type Order struct {
 	CustomerId    string                 `protobuf:"bytes,2,opt,name=customer_id,json=customerId,proto3" json:"customer_id,omitempty"`
 	CustomerName  string                 `protobuf:"bytes,3,opt,name=customer_name,json=customerName,proto3" json:"customer_name,omitempty"`
 	Items         []*OrderItem           `protobuf:"bytes,4,rep,name=items,proto3" json:"items,omitempty"`
-	Status        OrderStatus            `protobuf:"varint,5,opt,name=status,proto3,enum=order.OrderStatus" json:"status,omitempty"`
+	Status        OrderStatus            `protobuf:"varint,5,opt,name=status,proto3,enum=order.v1.OrderStatus" json:"status,omitempty"`
 	TotalAmount   float64                `protobuf:"fixed64,6,opt,name=total_amount,json=totalAmount,proto3" json:"total_amount,omitempty"`
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
@@ -367,7 +367,7 @@ func (x *GetOrderRequest) GetOrderId() string {
 type UpdateOrderStatusRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
-	Status        OrderStatus            `protobuf:"varint,2,opt,name=status,proto3,enum=order.OrderStatus" json:"status,omitempty"`
+	Status        OrderStatus            `protobuf:"varint,2,opt,name=status,proto3,enum=order.v1.OrderStatus" json:"status,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -761,14 +761,14 @@ var File_proto_order_proto protoreflect.FileDescriptor
 
 const file_proto_order_proto_rawDesc = "" +
 	"\n" +
-	"\x11proto/order.proto\x12\x05order\x1a\x1fgoogle/protobuf/timestamp.proto\"\xca\x02\n" +
+	"\x11proto/order.proto\x12\border.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd0\x02\n" +
 	"\x05Order\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1f\n" +
 	"\vcustomer_id\x18\x02 \x01(\tR\n" +
 	"customerId\x12#\n" +
-	"\rcustomer_name\x18\x03 \x01(\tR\fcustomerName\x12&\n" +
-	"\x05items\x18\x04 \x03(\v2\x10.order.OrderItemR\x05items\x12*\n" +
-	"\x06status\x18\x05 \x01(\x0e2\x12.order.OrderStatusR\x06status\x12!\n" +
+	"\rcustomer_name\x18\x03 \x01(\tR\fcustomerName\x12)\n" +
+	"\x05items\x18\x04 \x03(\v2\x13.order.v1.OrderItemR\x05items\x12-\n" +
+	"\x06status\x18\x05 \x01(\x0e2\x15.order.v1.OrderStatusR\x06status\x12!\n" +
 	"\ftotal_amount\x18\x06 \x01(\x01R\vtotalAmount\x129\n" +
 	"\n" +
 	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
@@ -782,17 +782,17 @@ const file_proto_order_proto_rawDesc = "" +
 	"\n" +
 	"unit_price\x18\x04 \x01(\x01R\tunitPrice\x12\x1f\n" +
 	"\vtotal_price\x18\x05 \x01(\x01R\n" +
-	"totalPrice\"\x82\x01\n" +
+	"totalPrice\"\x85\x01\n" +
 	"\x12CreateOrderRequest\x12\x1f\n" +
 	"\vcustomer_id\x18\x01 \x01(\tR\n" +
 	"customerId\x12#\n" +
-	"\rcustomer_name\x18\x02 \x01(\tR\fcustomerName\x12&\n" +
-	"\x05items\x18\x03 \x03(\v2\x10.order.OrderItemR\x05items\",\n" +
+	"\rcustomer_name\x18\x02 \x01(\tR\fcustomerName\x12)\n" +
+	"\x05items\x18\x03 \x03(\v2\x13.order.v1.OrderItemR\x05items\",\n" +
 	"\x0fGetOrderRequest\x12\x19\n" +
-	"\border_id\x18\x01 \x01(\tR\aorderId\"a\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\"d\n" +
 	"\x18UpdateOrderStatusRequest\x12\x19\n" +
-	"\border_id\x18\x01 \x01(\tR\aorderId\x12*\n" +
-	"\x06status\x18\x02 \x01(\x0e2\x12.order.OrderStatusR\x06status\"p\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\x12-\n" +
+	"\x06status\x18\x02 \x01(\x0e2\x15.order.v1.OrderStatusR\x06status\"p\n" +
 	"\x11ListOrdersRequest\x12\x1f\n" +
 	"\vcustomer_id\x18\x01 \x01(\tR\n" +
 	"customerId\x12\x1b\n" +
@@ -800,37 +800,37 @@ const file_proto_order_proto_rawDesc = "" +
 	"\n" +
 	"page_token\x18\x03 \x01(\tR\tpageToken\"/\n" +
 	"\x12CancelOrderRequest\x12\x19\n" +
-	"\border_id\x18\x01 \x01(\tR\aorderId\"9\n" +
-	"\x13CreateOrderResponse\x12\"\n" +
-	"\x05order\x18\x01 \x01(\v2\f.order.OrderR\x05order\"6\n" +
-	"\x10GetOrderResponse\x12\"\n" +
-	"\x05order\x18\x01 \x01(\v2\f.order.OrderR\x05order\"?\n" +
-	"\x19UpdateOrderStatusResponse\x12\"\n" +
-	"\x05order\x18\x01 \x01(\v2\f.order.OrderR\x05order\"\x83\x01\n" +
-	"\x12ListOrdersResponse\x12$\n" +
-	"\x06orders\x18\x01 \x03(\v2\f.order.OrderR\x06orders\x12&\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\"<\n" +
+	"\x13CreateOrderResponse\x12%\n" +
+	"\x05order\x18\x01 \x01(\v2\x0f.order.v1.OrderR\x05order\"9\n" +
+	"\x10GetOrderResponse\x12%\n" +
+	"\x05order\x18\x01 \x01(\v2\x0f.order.v1.OrderR\x05order\"B\n" +
+	"\x19UpdateOrderStatusResponse\x12%\n" +
+	"\x05order\x18\x01 \x01(\v2\x0f.order.v1.OrderR\x05order\"\x86\x01\n" +
+	"\x12ListOrdersResponse\x12'\n" +
+	"\x06orders\x18\x01 \x03(\v2\x0f.order.v1.OrderR\x06orders\x12&\n" +
 	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\x12\x1f\n" +
 	"\vtotal_count\x18\x03 \x01(\x05R\n" +
-	"totalCount\"9\n" +
-	"\x13CancelOrderResponse\x12\"\n" +
-	"\x05order\x18\x01 \x01(\v2\f.order.OrderR\x05order*c\n" +
+	"totalCount\"<\n" +
+	"\x13CancelOrderResponse\x12%\n" +
+	"\x05order\x18\x01 \x01(\v2\x0f.order.v1.OrderR\x05order*c\n" +
 	"\vOrderStatus\x12\v\n" +
 	"\aPENDING\x10\x00\x12\r\n" +
 	"\tCONFIRMED\x10\x01\x12\r\n" +
 	"\tPREPARING\x10\x02\x12\v\n" +
 	"\aSHIPPED\x10\x03\x12\r\n" +
 	"\tDELIVERED\x10\x04\x12\r\n" +
-	"\tCANCELLED\x10\x052\xc5\x04\n" +
-	"\fOrderService\x12D\n" +
-	"\vCreateOrder\x12\x19.order.CreateOrderRequest\x1a\x1a.order.CreateOrderResponse\x12;\n" +
-	"\bGetOrder\x12\x16.order.GetOrderRequest\x1a\x17.order.GetOrderResponse\x12V\n" +
-	"\x11UpdateOrderStatus\x12\x1f.order.UpdateOrderStatusRequest\x1a .order.UpdateOrderStatusResponse\x12A\n" +
+	"\tCANCELLED\x10\x052\xf5\x04\n" +
+	"\fOrderService\x12J\n" +
+	"\vCreateOrder\x12\x1c.order.v1.CreateOrderRequest\x1a\x1d.order.v1.CreateOrderResponse\x12A\n" +
+	"\bGetOrder\x12\x19.order.v1.GetOrderRequest\x1a\x1a.order.v1.GetOrderResponse\x12\\\n" +
+	"\x11UpdateOrderStatus\x12\".order.v1.UpdateOrderStatusRequest\x1a#.order.v1.UpdateOrderStatusResponse\x12G\n" +
 	"\n" +
-	"ListOrders\x12\x18.order.ListOrdersRequest\x1a\x19.order.ListOrdersResponse\x12D\n" +
-	"\vCancelOrder\x12\x19.order.CancelOrderRequest\x1a\x1a.order.CancelOrderResponse\x12:\n" +
-	"\x10WatchOrderStatus\x12\x16.order.GetOrderRequest\x1a\f.order.Order0\x01\x12K\n" +
-	"\x11BatchCreateOrders\x12\x19.order.CreateOrderRequest\x1a\x19.order.ListOrdersResponse(\x01\x12H\n" +
-	"\x13ProcessOrdersStream\x12\x1f.order.UpdateOrderStatusRequest\x1a\f.order.Order(\x010\x01B\vZ\t./orderpbb\x06proto3"
+	"ListOrders\x12\x1b.order.v1.ListOrdersRequest\x1a\x1c.order.v1.ListOrdersResponse\x12J\n" +
+	"\vCancelOrder\x12\x1c.order.v1.CancelOrderRequest\x1a\x1d.order.v1.CancelOrderResponse\x12@\n" +
+	"\x10WatchOrderStatus\x12\x19.order.v1.GetOrderRequest\x1a\x0f.order.v1.Order0\x01\x12Q\n" +
+	"\x11BatchCreateOrders\x12\x1c.order.v1.CreateOrderRequest\x1a\x1c.order.v1.ListOrdersResponse(\x01\x12N\n" +
+	"\x13ProcessOrdersStream\x12\".order.v1.UpdateOrderStatusRequest\x1a\x0f.order.v1.Order(\x010\x01B8Z6github.com/order-management-grpc/proto/orderpb;orderpbb\x06proto3"
 
 var (
 	file_proto_order_proto_rawDescOnce sync.Once
@@ -847,49 +847,49 @@ func file_proto_order_proto_rawDescGZIP() []byte {
 var file_proto_order_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_proto_order_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_proto_order_proto_goTypes = []any{
-	(OrderStatus)(0),                  // 0: order.OrderStatus
-	(*Order)(nil),                     // 1: order.Order
-	(*OrderItem)(nil),                 // 2: order.OrderItem
-	(*CreateOrderRequest)(nil),        // 3: order.CreateOrderRequest
-	(*GetOrderRequest)(nil),           // 4: order.GetOrderRequest
-	(*UpdateOrderStatusRequest)(nil),  // 5: order.UpdateOrderStatusRequest
-	(*ListOrdersRequest)(nil),         // 6: order.ListOrdersRequest
-	(*CancelOrderRequest)(nil),        // 7: order.CancelOrderRequest
-	(*CreateOrderResponse)(nil),       // 8: order.CreateOrderResponse
-	(*GetOrderResponse)(nil),          // 9: order.GetOrderResponse
-	(*UpdateOrderStatusResponse)(nil), // 10: order.UpdateOrderStatusResponse
-	(*ListOrdersResponse)(nil),        // 11: order.ListOrdersResponse
-	(*CancelOrderResponse)(nil),       // 12: order.CancelOrderResponse
+	(OrderStatus)(0),                  // 0: order.v1.OrderStatus
+	(*Order)(nil),                     // 1: order.v1.Order
+	(*OrderItem)(nil),                 // 2: order.v1.OrderItem
+	(*CreateOrderRequest)(nil),        // 3: order.v1.CreateOrderRequest
+	(*GetOrderRequest)(nil),           // 4: order.v1.GetOrderRequest
+	(*UpdateOrderStatusRequest)(nil),  // 5: order.v1.UpdateOrderStatusRequest
+	(*ListOrdersRequest)(nil),         // 6: order.v1.ListOrdersRequest
+	(*CancelOrderRequest)(nil),        // 7: order.v1.CancelOrderRequest
+	(*CreateOrderResponse)(nil),       // 8: order.v1.CreateOrderResponse
+	(*GetOrderResponse)(nil),          // 9: order.v1.GetOrderResponse
+	(*UpdateOrderStatusResponse)(nil), // 10: order.v1.UpdateOrderStatusResponse
+	(*ListOrdersResponse)(nil),        // 11: order.v1.ListOrdersResponse
+	(*CancelOrderResponse)(nil),       // 12: order.v1.CancelOrderResponse
 	(*timestamppb.Timestamp)(nil),     // 13: google.protobuf.Timestamp
 }
 var file_proto_order_proto_depIdxs = []int32{
-	2,  // 0: order.Order.items:type_name -> order.OrderItem
-	0,  // 1: order.Order.status:type_name -> order.OrderStatus
-	13, // 2: order.Order.created_at:type_name -> google.protobuf.Timestamp
-	13, // 3: order.Order.updated_at:type_name -> google.protobuf.Timestamp
-	2,  // 4: order.CreateOrderRequest.items:type_name -> order.OrderItem
-	0,  // 5: order.UpdateOrderStatusRequest.status:type_name -> order.OrderStatus
-	1,  // 6: order.CreateOrderResponse.order:type_name -> order.Order
-	1,  // 7: order.GetOrderResponse.order:type_name -> order.Order
-	1,  // 8: order.UpdateOrderStatusResponse.order:type_name -> order.Order
-	1,  // 9: order.ListOrdersResponse.orders:type_name -> order.Order
-	1,  // 10: order.CancelOrderResponse.order:type_name -> order.Order
-	3,  // 11: order.OrderService.CreateOrder:input_type -> order.CreateOrderRequest
-	4,  // 12: order.OrderService.GetOrder:input_type -> order.GetOrderRequest
-	5,  // 13: order.OrderService.UpdateOrderStatus:input_type -> order.UpdateOrderStatusRequest
-	6,  // 14: order.OrderService.ListOrders:input_type -> order.ListOrdersRequest
-	7,  // 15: order.OrderService.CancelOrder:input_type -> order.CancelOrderRequest
-	4,  // 16: order.OrderService.WatchOrderStatus:input_type -> order.GetOrderRequest
-	3,  // 17: order.OrderService.BatchCreateOrders:input_type -> order.CreateOrderRequest
-	5,  // 18: order.OrderService.ProcessOrdersStream:input_type -> order.UpdateOrderStatusRequest
-	8,  // 19: order.OrderService.CreateOrder:output_type -> order.CreateOrderResponse
-	9,  // 20: order.OrderService.GetOrder:output_type -> order.GetOrderResponse
-	10, // 21: order.OrderService.UpdateOrderStatus:output_type -> order.UpdateOrderStatusResponse
-	11, // 22: order.OrderService.ListOrders:output_type -> order.ListOrdersResponse
-	12, // 23: order.OrderService.CancelOrder:output_type -> order.CancelOrderResponse
-	1,  // 24: order.OrderService.WatchOrderStatus:output_type -> order.Order
-	11, // 25: order.OrderService.BatchCreateOrders:output_type -> order.ListOrdersResponse
-	1,  // 26: order.OrderService.ProcessOrdersStream:output_type -> order.Order
+	2,  // 0: order.v1.Order.items:type_name -> order.v1.OrderItem
+	0,  // 1: order.v1.Order.status:type_name -> order.v1.OrderStatus
+	13, // 2: order.v1.Order.created_at:type_name -> google.protobuf.Timestamp
+	13, // 3: order.v1.Order.updated_at:type_name -> google.protobuf.Timestamp
+	2,  // 4: order.v1.CreateOrderRequest.items:type_name -> order.v1.OrderItem
+	0,  // 5: order.v1.UpdateOrderStatusRequest.status:type_name -> order.v1.OrderStatus
+	1,  // 6: order.v1.CreateOrderResponse.order:type_name -> order.v1.Order
+	1,  // 7: order.v1.GetOrderResponse.order:type_name -> order.v1.Order
+	1,  // 8: order.v1.UpdateOrderStatusResponse.order:type_name -> order.v1.Order
+	1,  // 9: order.v1.ListOrdersResponse.orders:type_name -> order.v1.Order
+	1,  // 10: order.v1.CancelOrderResponse.order:type_name -> order.v1.Order
+	3,  // 11: order.v1.OrderService.CreateOrder:input_type -> order.v1.CreateOrderRequest
+	4,  // 12: order.v1.OrderService.GetOrder:input_type -> order.v1.GetOrderRequest
+	5,  // 13: order.v1.OrderService.UpdateOrderStatus:input_type -> order.v1.UpdateOrderStatusRequest
+	6,  // 14: order.v1.OrderService.ListOrders:input_type -> order.v1.ListOrdersRequest
+	7,  // 15: order.v1.OrderService.CancelOrder:input_type -> order.v1.CancelOrderRequest
+	4,  // 16: order.v1.OrderService.WatchOrderStatus:input_type -> order.v1.GetOrderRequest
+	3,  // 17: order.v1.OrderService.BatchCreateOrders:input_type -> order.v1.CreateOrderRequest
+	5,  // 18: order.v1.OrderService.ProcessOrdersStream:input_type -> order.v1.UpdateOrderStatusRequest
+	8,  // 19: order.v1.OrderService.CreateOrder:output_type -> order.v1.CreateOrderResponse
+	9,  // 20: order.v1.OrderService.GetOrder:output_type -> order.v1.GetOrderResponse
+	10, // 21: order.v1.OrderService.UpdateOrderStatus:output_type -> order.v1.UpdateOrderStatusResponse
+	11, // 22: order.v1.OrderService.ListOrders:output_type -> order.v1.ListOrdersResponse
+	12, // 23: order.v1.OrderService.CancelOrder:output_type -> order.v1.CancelOrderResponse
+	1,  // 24: order.v1.OrderService.WatchOrderStatus:output_type -> order.v1.Order
+	11, // 25: order.v1.OrderService.BatchCreateOrders:output_type -> order.v1.ListOrdersResponse
+	1,  // 26: order.v1.OrderService.ProcessOrdersStream:output_type -> order.v1.Order
 	19, // [19:27] is the sub-list for method output_type
 	11, // [11:19] is the sub-list for method input_type
 	11, // [11:11] is the sub-list for extension type_name

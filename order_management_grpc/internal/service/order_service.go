@@ -13,9 +13,10 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"github.com/order-management/internal/models"
-	"github.com/order-management/internal/storage"
-	pb "github.com/order-management/proto"
+	pb "order_management_grpc/proto/orderpb/proto"
+
+	"order_management_grpc/internal/models"
+	"order_management_grpc/internal/storage"
 )
 
 // OrderService implements the gRPC OrderService

@@ -1,4 +1,4 @@
-module github.com/order-management
+module order_management_grpc
 
 go 1.21
 

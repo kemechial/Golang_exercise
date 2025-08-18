@@ -19,14 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	OrderService_CreateOrder_FullMethodName         = "/order.OrderService/CreateOrder"
-	OrderService_GetOrder_FullMethodName            = "/order.OrderService/GetOrder"
-	OrderService_UpdateOrderStatus_FullMethodName   = "/order.OrderService/UpdateOrderStatus"
-	OrderService_ListOrders_FullMethodName          = "/order.OrderService/ListOrders"
-	OrderService_CancelOrder_FullMethodName         = "/order.OrderService/CancelOrder"
-	OrderService_WatchOrderStatus_FullMethodName    = "/order.OrderService/WatchOrderStatus"
-	OrderService_BatchCreateOrders_FullMethodName   = "/order.OrderService/BatchCreateOrders"
-	OrderService_ProcessOrdersStream_FullMethodName = "/order.OrderService/ProcessOrdersStream"
+	OrderService_CreateOrder_FullMethodName         = "/order.v1.OrderService/CreateOrder"
+	OrderService_GetOrder_FullMethodName            = "/order.v1.OrderService/GetOrder"
+	OrderService_UpdateOrderStatus_FullMethodName   = "/order.v1.OrderService/UpdateOrderStatus"
+	OrderService_ListOrders_FullMethodName          = "/order.v1.OrderService/ListOrders"
+	OrderService_CancelOrder_FullMethodName         = "/order.v1.OrderService/CancelOrder"
+	OrderService_WatchOrderStatus_FullMethodName    = "/order.v1.OrderService/WatchOrderStatus"
+	OrderService_BatchCreateOrders_FullMethodName   = "/order.v1.OrderService/BatchCreateOrders"
+	OrderService_ProcessOrdersStream_FullMethodName = "/order.v1.OrderService/ProcessOrdersStream"
 )
 
 // OrderServiceClient is the client API for OrderService service.
@@ -352,7 +352,7 @@ type OrderService_ProcessOrdersStreamServer = grpc.BidiStreamingServer[UpdateOrd
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var OrderService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "order.OrderService",
+	ServiceName: "order.v1.OrderService",
 	HandlerType: (*OrderServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

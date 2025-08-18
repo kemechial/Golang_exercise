@@ -57,7 +57,7 @@ order_management_grpc/
    make install-protoc
    ```
 
-3. **Install dependencies**:
+3. **Install dependencies and tidy modules**:
    ```bash
    make install-deps
    ```

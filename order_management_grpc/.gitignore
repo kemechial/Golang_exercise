@@ -1,0 +1,22 @@
+# Go build
+bin/
+*.exe
+*.out
+*.test
+
+# Proto generated
+*.pb.go
+
+# Editor
+.vscode/
+.idea/
+
+# Docker
+pgdata/
+
+# Env
+.env
+
+# Misc
+*.log
+*.swp

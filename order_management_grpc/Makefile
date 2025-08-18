@@ -32,8 +32,13 @@ client: build
 
 # Run tests
 test:
-	@echo "Running tests..."
+	@echo "Running unit and integration tests..."
 	@go test -v ./...
+
+test-integration:
+	@echo "Running integration tests in Docker..."
+	@docker compose -f docker-compose.test.yml up --build --abort-on-container-exit --exit-code-from test
+	@docker compose -f docker-compose.test.yml down
 
 # Clean build artifacts
 clean:

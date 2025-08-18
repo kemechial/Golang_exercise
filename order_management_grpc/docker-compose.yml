@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: orderdb
+      POSTGRES_USER: orderuser
+      POSTGRES_PASSWORD: orderpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Dockerfile
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: orderuser
+      DB_PASSWORD: orderpass
+      DB_NAME: orderdb
+    depends_on:
+      - db
+    ports:
+      - "50051:50051"
+volumes:
+  pgdata:

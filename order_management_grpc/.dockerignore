@@ -1,0 +1,6 @@
+bin/
+*.pb.go
+*.test
+*.md
+*.sh
+*.txt

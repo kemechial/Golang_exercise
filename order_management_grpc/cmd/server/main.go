@@ -12,7 +12,9 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 
-	pb "order_management_grpc/proto/orderpb/proto"
+	pb "order_management_grpc/proto/orderpb"
+	inventorypb "order_management_grpc/proto/inventorypb"
+	deliverypb "order_management_grpc/proto/deliverypb"
 
 	"order_management_grpc/internal/service"
 	"order_management_grpc/internal/storage"
@@ -38,18 +40,25 @@ func getPostgresConn() (*pgx.Conn, error) {
 func main() {
 	_ = godotenv.Load()
 
-	var store storage.OrderStore
+	var orderStore storage.OrderStore
+	var inventoryStore storage.InventoryStore
 	conn, err := getPostgresConn()
 	if err == nil {
 		log.Println("Using PostgreSQL for order storage.")
-		store = storage.NewPostgresOrderStore(conn)
+		orderStore = storage.NewPostgresOrderStore(conn)
+		// TODO: Implement NewPostgresInventoryStore
+		inventoryStore = nil
 	} else {
-		log.Printf("PostgreSQL not available (%v), using in-memory store.", err)
-		store = storage.NewInMemoryOrderStore()
+		log.Printf("PostgreSQL not available (%v), using in-memory stores.", err)
+		orderStore = storage.NewInMemoryOrderStore()
+		// TODO: Implement NewInMemoryInventoryStore
+		inventoryStore = nil
 	}
 
-	// Create service
-	orderService := service.NewOrderService(store)
+	// Create services
+	orderService := service.NewOrderService(orderStore)
+	inventoryService := service.NewInventoryService(inventoryStore)
+	deliveryService := service.NewDeliveryService()
 
 	// Create listener
 	lis, err := net.Listen("tcp", port)
@@ -60,8 +69,10 @@ func main() {
 	// Create gRPC server
 	s := grpc.NewServer()
 
-	// Register service
+	// Register services
 	pb.RegisterOrderServiceServer(s, orderService)
+	inventorypb.RegisterInventoryServiceServer(s, inventoryService)
+	deliverypb.RegisterDeliveryServiceServer(s, deliveryService)
 
 	// Register reflection service (for grpcurl and debugging)
 	reflection.Register(s)

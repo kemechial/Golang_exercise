@@ -3,7 +3,7 @@ package models
 import (
 	"time"
 
-	pb "order_management_grpc/proto/orderpb/proto"
+	pb "order_management_grpc/proto/orderpb"
 
 	"google.golang.org/protobuf/types/known/timestamppb"
 )

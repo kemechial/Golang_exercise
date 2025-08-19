@@ -13,7 +13,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	pb "order_management_grpc/proto/orderpb/proto"
+	pb "order_management_grpc/proto/orderpb"
 
 	"order_management_grpc/internal/models"
 	"order_management_grpc/internal/storage"

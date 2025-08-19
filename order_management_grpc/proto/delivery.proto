@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package delivery.v1;
+
+option go_package = "order_management_grpc/proto/deliverypb;deliverypb";
+
+// Delivery messages
+message Delivery {
+    string id = 1;
+    string order_id = 2;
+    string address = 3;
+    string status = 4;
+}
+
+message CreateDeliveryRequest {
+    Delivery delivery = 1;
+}
+message CreateDeliveryResponse {
+    Delivery delivery = 1;
+}
+message GetDeliveryRequest {
+    string id = 1;
+}
+message GetDeliveryResponse {
+    Delivery delivery = 1;
+}
+message UpdateDeliveryRequest {
+    Delivery delivery = 1;
+}
+message UpdateDeliveryResponse {
+    Delivery delivery = 1;
+}
+message DeleteDeliveryRequest {
+    string id = 1;
+}
+message DeleteDeliveryResponse {
+    bool success = 1;
+}
+message ListDeliveriesRequest {}
+message ListDeliveriesResponse {
+    repeated Delivery deliveries = 1;
+}
+
+// Delivery Service
+service DeliveryService {
+    rpc CreateDelivery (CreateDeliveryRequest) returns (CreateDeliveryResponse);
+    rpc GetDelivery (GetDeliveryRequest) returns (GetDeliveryResponse);
+    rpc UpdateDelivery (UpdateDeliveryRequest) returns (UpdateDeliveryResponse);
+    rpc DeleteDelivery (DeleteDeliveryRequest) returns (DeleteDeliveryResponse);
+    rpc ListDeliveries (ListDeliveriesRequest) returns (ListDeliveriesResponse);
+}

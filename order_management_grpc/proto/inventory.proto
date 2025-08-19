@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package inventory.v1;
+
+option go_package = "order_management_grpc/proto/inventorypb;inventorypb";
+
+// Inventory messages
+message InventoryItem {
+    string id = 1;
+    string name = 2;
+    int32 quantity = 3;
+    string location = 4;
+}
+
+message CreateInventoryItemRequest {
+    InventoryItem item = 1;
+}
+message CreateInventoryItemResponse {
+    InventoryItem item = 1;
+}
+message GetInventoryItemRequest {
+    string id = 1;
+}
+message GetInventoryItemResponse {
+    InventoryItem item = 1;
+}
+message UpdateInventoryItemRequest {
+    InventoryItem item = 1;
+}
+message UpdateInventoryItemResponse {
+    InventoryItem item = 1;
+}
+message DeleteInventoryItemRequest {
+    string id = 1;
+}
+message DeleteInventoryItemResponse {
+    bool success = 1;
+}
+message ListInventoryItemsRequest {}
+message ListInventoryItemsResponse {
+    repeated InventoryItem items = 1;
+}
+
+// Inventory Service
+service InventoryService {
+    rpc CreateInventoryItem (CreateInventoryItemRequest) returns (CreateInventoryItemResponse);
+    rpc GetInventoryItem (GetInventoryItemRequest) returns (GetInventoryItemResponse);
+    rpc UpdateInventoryItem (UpdateInventoryItemRequest) returns (UpdateInventoryItemResponse);
+    rpc DeleteInventoryItem (DeleteInventoryItemRequest) returns (DeleteInventoryItemResponse);
+    rpc ListInventoryItems (ListInventoryItemsRequest) returns (ListInventoryItemsResponse);
+}

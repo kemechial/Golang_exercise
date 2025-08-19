@@ -3,7 +3,7 @@ syntax = "proto3";
 
 package order.v1;
 
-option go_package = "github.com/order-management-grpc/proto/orderpb;orderpb";
+option go_package = "order_management_grpc/proto/orderpb;orderpb";
 
 import "google/protobuf/timestamp.proto";
 
@@ -113,3 +113,4 @@ service OrderService {
   // Bidirectional streaming: Real-time order processing
   rpc ProcessOrdersStream(stream UpdateOrderStatusRequest) returns (stream Order);
 }
+

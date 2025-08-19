@@ -8,7 +8,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	pb "order_management_grpc/proto/orderpb/proto"
+	pb "order_management_grpc/proto/orderpb"
 )
 
 const (

@@ -8,7 +8,7 @@ import (
 
 	"order_management_grpc/internal/service"
 	"order_management_grpc/internal/storage"
-	pb "order_management_grpc/proto/orderpb/proto"
+	pb "order_management_grpc/proto/orderpb"
 
 	"google.golang.org/grpc/metadata"
 )
